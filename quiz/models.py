@@ -38,7 +38,7 @@ class Option(models.Model):
 
       return self.option_text
 
-      
+
 class Participant(models.Model):
     GENDER_CHOICES = [
         ("Male", "Male"),
@@ -57,3 +57,22 @@ class Participant(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class QuizAttempt(models.Model):
+    participant = models.ForeignKey(
+        Participant,
+        on_delete=models.CASCADE,
+        related_name="attempts"
+    )
+    quiz = models.ForeignKey(
+        Quiz,
+        on_delete=models.CASCADE,
+        related_name="attempts"
+    )
+    score = models.PositiveIntegerField(default=0)
+    started_at = models.DateTimeField(auto_now_add=True)
+    completed_at = models.DateTimeField(null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.participant.name} - {self.quiz.title}"
