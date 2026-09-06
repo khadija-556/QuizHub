@@ -35,4 +35,25 @@ class Option(models.Model):
     is_correct = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.option_text
+
+      return self.option_text
+
+      
+class Participant(models.Model):
+    GENDER_CHOICES = [
+        ("Male", "Male"),
+        ("Female", "Female"),
+        ("Other", "Other"),
+    ]
+
+    name = models.CharField(max_length=150)
+    age = models.PositiveIntegerField()
+    gender = models.CharField(
+        max_length=10,
+        choices=GENDER_CHOICES
+    )
+    institution = models.CharField(max_length=200)
+    class_name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
