@@ -64,3 +64,23 @@ class QuizAttemptSerializer(serializers.ModelSerializer):
             "started_at",
             "completed_at",
         ]
+
+class AnswerSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Answer
+        fields = [
+            "id",
+            "attempt",
+            "question",
+            "selected_option",
+            "is_correct",
+        ]
+
+        read_only_fields = [
+            "is_correct",
+        ]
+
+    def validate(self,data):
+        question = data["question"]
+        selected_option = data["selected_option"]
