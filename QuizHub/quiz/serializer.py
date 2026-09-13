@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from models import *
+from .models import *
 
 class OptionSerializer(serializers.ModelSerializer):
      class Meta:
@@ -7,7 +7,7 @@ class OptionSerializer(serializers.ModelSerializer):
         fields = [ "id", "question", "option_text", "is_correct", ]
 
 
-class QuestionSerializer(serializers.Model):
+class QuestionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Question
         fields = [
