@@ -31,3 +31,15 @@ class QuizSerializer(serializers.ModelSerializer):
             "created_at",
             "questions",
         ]
+
+class ParticipantSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Participant
+        fields = [
+            "id",
+            "name",
+            "age",
+            "gender",
+            "institution",
+            "class_name",
+        ]
