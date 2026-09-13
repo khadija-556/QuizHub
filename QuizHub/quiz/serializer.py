@@ -16,3 +16,18 @@ class QuestionSerializer(serializers.Model):
             "question_text",
             "options",
         ]
+
+class QuizSerializer(serializers.ModelSerializer):
+
+    questions = QuestionSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Quiz
+        fields = [
+            "id",
+            "title",
+            "description",
+            "duration",
+            "created_at",
+            "questions",
+        ]
