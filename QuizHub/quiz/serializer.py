@@ -43,3 +43,24 @@ class ParticipantSerializer(serializers.ModelSerializer):
             "institution",
             "class_name",
         ]
+
+class QuizAttemptSerializer(serializers.ModelSerializer):
+    answers = serializers.PrimaryKeyRelatedField(many=True,read_only=True)
+
+    class Meta:
+        model = QuizAttempt
+        fields = [
+            "id",
+            "participant",
+            "quiz",
+            "score",
+            "started_at",
+            "completed_at",
+            "answers",
+        ]
+
+        read_only_fields = [
+            "score",
+            "started_at",
+            "completed_at",
+        ]
